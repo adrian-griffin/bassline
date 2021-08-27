@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Mock version of /opt/bassline-privileged/change-hostname
-
-echo "Starting mock version of change-hostname..."
-
-echo "Mock change of hostname succeeded (no changes were applied)"
