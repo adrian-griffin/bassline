@@ -158,7 +158,7 @@ interpreter_python = /usr/bin/python3
 BASSLINE_ROLE_NAME="bassline-ansible"
 if [ -d "$BASSLINE_ROLE_NAME" ]; then
   pushd "$BASSLINE_ROLE_NAME"
-  git pull origin master
+  git pull origin main
   popd
 else
   BASSLINE_ROLE_REPO="https://github.com/adrian-griffin/bassline-ansible"
