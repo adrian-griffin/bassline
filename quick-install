@@ -155,13 +155,13 @@ roles_path = $PWD
 interpreter_python = /usr/bin/python3
 " > ansible.cfg
 
-BASSLINE_ROLE_NAME="ansible-role-bassline"
+BASSLINE_="bassline-ansible"
 if [ -d "$BASSLINE_ROLE_NAME" ]; then
   pushd "$BASSLINE_ROLE_NAME"
   git pull origin master
   popd
 else
-  BASSLINE_ROLE_REPO="https://github.com/bassline/ansible-role-bassline.git"
+  BASSLINE_ROLE_REPO="https://github.com/adrian-griffin/bassline-ansible"
   git clone "$BASSLINE_ROLE_REPO" "$BASSLINE_ROLE_NAME"
 fi
 
