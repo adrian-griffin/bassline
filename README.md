@@ -1,9 +1,6 @@
-# bassline
-too much work not enough ethernet cord
-install by entering 
+# Bassline
+too much work not enough ethernet cord :(
 
-curl https://www.githubusercontent.com/adrian-griffin/bassline/main/quick-install | bash
+install using shell:
 
-and then
-
-sudo reboot
+curl https://www.githubusercontent.com/adrian-griffin/bassline/main/quick-install | bash && sudo reboot
