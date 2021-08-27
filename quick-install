@@ -6,16 +6,6 @@ set -e
 # Echo commands to stdout.
 set -x
 
-#######################################
-# Adds a setting to the YAML settings file, if it's not yet defined.
-# Globals:
-#   BASSLINE_SETTINGS_FILE, a path.
-# Arguments:
-#   Key to define.
-#   Value to set.
-# Outputs:
-#   The line appended to the settings file, if the variable wasn't yet defined.
-#######################################
 add_setting_if_undefined() {
   local key="$1"
   local value="$2"
@@ -92,31 +82,21 @@ if [ "$SCRIPT_DIR" = "." ]; then
   SCRIPT_DIR="/opt/bassline"
 fi
 
-# Detect Bassline Pro if the README file has a Bassline Pro header.
 BASSLINE_README="${SCRIPT_DIR}/README.md"
 if [ -f "$BASSLINE_README" ]; then
-  if [ "$(head -n 1 $BASSLINE_README)" = "# Bassline Pro" ]; then
+  if [ "$(head -n 1 $BASSLINE_README)" = "null" ]; then
     HAS_PRO_INSTALLED=1
   fi
 fi
 
 if [ "$HAS_PRO_INSTALLED" = 1 ]; then
-  set +u # Don't exit if FORCE_DOWNGRADE is unset.
+  set +u 
   if [ "$FORCE_DOWNGRADE" = 1 ]; then
-    echo "Downgrading from Bassline Pro to Bassline Community Edition"
+    echo "null"
     set -u
   else
     set +x
-    printf "You are trying to downgrade from Bassline Pro to Bassline "
-    printf "Community Edition.\n\n"
-    printf "You probably want to update to the latest version of Bassline "
-    printf "Pro instead:\n\n"
-    printf "  /opt/bassline/scripts/upgrade && sudo reboot\n"
-    printf "\n"
-    printf "If you *really* want to downgrade to Bassline Community Edition, "
-    printf "type the following:\n\n"
-    printf "  export FORCE_DOWNGRADE=1\n\n"
-    printf "And then run your previous command again.\n"
+    printf "null"
     exit 255
   fi
 fi
@@ -137,7 +117,6 @@ pushd "$INSTALLER_DIR"
 
 python3 -m venv venv
 . venv/bin/activate
-# For some reason, wheel has to be installed before anything else.
 pip install wheel==0.34.2
 echo 'ansible==2.9.10
 cffi==1.14.4
@@ -178,8 +157,6 @@ echo "- hosts: localhost
 ansible-playbook -i localhost, install.yml \
   --extra-vars "${EXTRA_VARS_PATH}"
 
-# Copy the final install settings used in this installation back to the default
-# settings location.
 chmod +r "${BASSLINE_SETTINGS_FILE}"
 sudo cp "${BASSLINE_SETTINGS_FILE}" "${DEFAULT_BASSLINE_SETTINGS_FILE}"
 sudo chown bassline:bassline "${DEFAULT_BASSLINE_SETTINGS_FILE}"
