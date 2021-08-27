@@ -16,7 +16,7 @@ class HostnameValidationTest(unittest.TestCase):
         self.assertFalse(hostname.validate(None))
 
     def test_rejects_hostnames_with_invalid_characters(self):
-        self.assertFalse(hostname.validate('TINYPILOT'))
+        self.assertFalse(hostname.validate('BASSLINE'))
         self.assertFalse(hostname.validate('bassline***'))
         self.assertFalse(hostname.validate('tiny.pilot'))
 
